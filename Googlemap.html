@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Styled Map by Aaron D</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+	
+function initMap() {
+  const appgeo = { lat: 42.3609, lng: -71.056 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+  mapId: "c59ad349544fd71",
+  zoom: 15,
+  center: appgeo,
+  });
+ const contentString =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h3 id="firstHeading" class="firstHeading">AppGeo Boston</h3>' +
+    '<div id="bodyContent">' +
+    "<p><b>33 Broad Street, Boston MA 02109</b> </p>" +
+    "<p><b>Phone: (617) 447-2400</b></p>" +
+  //  '<p>Directions:, <a href=https://www.google.com/maps/place/33+Broad+St,+Boston,+MA+02109/@42.3584699,-71.0566547,17z/data=!3m1!4b1!4m5!3m4!1s0x89e370868c421d97:0x80fe42c0196ee13a!8m2!3d42.3584699!4d-71.054466 target="_blank">' +
+ //  "Open Google Maps</a> " +
+    "</p>" +
+    "</div>" +
+    "</div>";
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+  const marker = new google.maps.Marker({
+    position: appgeo,
+    map,
+    title: "AppGeo Boston HQ",
+  });
+
+  marker.addListener("click", () => {
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
+    });
+  });
+}
+
+window.initMap = initMap;
+
+	
+	
+	    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly">
+    </script>
+  </body>
+</html>
